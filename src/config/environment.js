@@ -22,7 +22,7 @@ const setConfig = () => {
 
   if (process.env.DEBUG) debug.enable(process.env.DEBUG);
 
-  config = {
+  return config = {
     api: {
       label: 'Credit Report',
       host: 'https://s3.amazonaws.com/cdn.clearscore.com/native/interview_test', // creditReportInfo.json

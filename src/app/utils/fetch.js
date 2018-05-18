@@ -1,5 +1,6 @@
 /* global fetch */
 import { localUrl } from '../utils';
+import fetch from 'node-fetch';
 
 function queryParams(params) {
   return Object.keys(params)

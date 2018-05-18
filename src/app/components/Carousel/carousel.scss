@@ -1,0 +1,98 @@
+@import "../Dashboard/dashboard";
+
+$prefix: "carousel";
+
+$margin: 20px;
+$initialWidth: 400px;
+$contentWidth: $initialWidth - 2 * $margin;
+
+@mixin circle($width) {
+  width: $width;
+  height: $width;
+  -webkit-border-radius: $width/2;
+  -moz-border-radius: $width/2;
+  border-radius: $width/2;
+  text-align: center;
+  border: 2px solid #ffe720;
+  max-width: $initialWidth;
+}
+
+.circle {
+  @include circle($initialWidth);
+}
+
+.#{$prefix} {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.#{$prefix} div.content {
+  width: $contentWidth;
+  height: $contentWidth;
+  margin: $margin;
+  border-radius: $contentWidth/2;
+  overflow: hidden;
+  cursor: pointer;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@keyframes animateout {
+  0% {
+    margin-left: 0;
+    opacity: 1;
+  }
+  33% {
+    margin-left: -1000px;
+    opacity: 0;
+  }
+  66% {
+    margin-left: 1000px;
+    opacity: 0;
+  }
+  100% {
+    margin-left: 0;
+    opacity: 1;
+  }
+}
+
+.content.animate {
+  animation-name: animateout;
+  animation-duration: .7s;
+}
+
+.#{$prefix}.circle:before {
+  @extend .background;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(20px);
+}
+
+@media screen and (max-width: 460px) {
+
+  $initialWidth: calc(100% - 40px);
+  $contentWidth: calc(100% - 80px);
+
+  .circle {
+    @include circle($initialWidth);
+    background: red !important;
+  }
+
+  .#{$prefix} div.content {
+    width: $contentWidth;
+    min-height: $contentWidth;
+    margin: $margin;
+    border-radius: calc(calc(100% - 40px) / 2);
+    overflow: hidden;
+  }
+}
+
